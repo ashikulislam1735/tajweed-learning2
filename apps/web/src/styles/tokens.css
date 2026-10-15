@@ -1,0 +1,26 @@
+/* রং, ফন্ট, মাপ — সাইটের সব ডিজাইন সিদ্ধান্ত এখানে। এখানে বদলালে পুরো সাইট বদলায়। */
+:root {
+  --pine: #1b4332;
+  --pine-deep: #123726;
+  --green: #2d6a4f;
+  --ivory: #faf6ee;
+  --gold: #c9a227;
+  --ink: #1a1a1a;
+  --muted: #6b6459;
+  --card: #ffffff;
+  --line: #e7dfce;
+  --wa: #25d366;
+  --wa-ink: #128c4a;
+  --danger-bg: #fbeaea;
+  --danger-ink: #8a2b2b;
+  --ok-bg: #e7f5ec;
+
+  --font-body: 'Hind Siliguri', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-arabic: 'Amiri', 'Scheherazade New', serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow: 0 8px 24px rgba(27, 67, 50, 0.08);
+  --container: 1140px;
+}

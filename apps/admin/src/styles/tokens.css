@@ -1,0 +1,17 @@
+:root {
+  --pine: #1b4332;
+  --green: #2d6a4f;
+  --gold: #c9a227;
+  --bg: #f4f1ea;
+  --card: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6459;
+  --line: #e3ddd0;
+  --danger: #c0392b;
+  --danger-bg: #fbeaea;
+  --ok-bg: #e7f5ec;
+  --warn-bg: #fbf6e8;
+  --warn-ink: #8a6d00;
+  --font-body: 'Hind Siliguri', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius: 12px;
+}

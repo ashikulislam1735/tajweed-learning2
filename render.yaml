@@ -1,0 +1,25 @@
+# Render এ "Blueprint" হিসেবে ডিপ্লয় করতে চাইলে এই ফাইল কাজে লাগে (ঐচ্ছিক)।
+# সাধারণভাবে Render ড্যাশবোর্ডে হাতে সেটআপ করাই শেখার জন্য ভালো, README দেখুন।
+services:
+  - type: web
+    name: tajweed-server
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_ORIGINS
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false

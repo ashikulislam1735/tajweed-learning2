@@ -1,0 +1,6 @@
+/* সব স্টাইল এক জায়গা থেকে লোড হয়। ডিজাইন বদলাতে হলে শুধু এই ফোল্ডারের ফাইলগুলো বদলান। */
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './pages.css';

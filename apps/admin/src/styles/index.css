@@ -1,0 +1,4 @@
+/* এডমিন প্যানেলের সব স্টাইল। ডিজাইন বদলাতে শুধু এই ফোল্ডার বদলান। */
+@import './tokens.css';
+@import './base.css';
+@import './admin.css';
