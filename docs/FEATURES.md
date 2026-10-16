@@ -1,13 +1,13 @@
 # ফিচার তালিকা ও MySQL → MongoDB ম্যাপ
 
-## ওয়েবসাইট (apps/web)
+## ওয়েবসাইট (frontend)
 - হোম: হিরো, ছাত্র সংখ্যা (সেটিংসের শুরুর মান + অনুমোদিত ভর্তি), মাখরাজ হরফ, নামাজের সময় (Aladhan), ৩ কোর্স, ৪ শিক্ষক, ৩ রিভিউ
 - কোর্সসমূহ, শিক্ষকবৃন্দ
 - ভর্তি ফর্ম (ডাটাবেজে সেভ + WhatsApp এ পাঠানো)
 - যোগাযোগ (ঠিকানা, ম্যাপ, রিভিউ জমা)
 - কুইজ: তালিকা → নাম দিয়ে শুরু → একটা একটা প্রশ্ন → টাইমার → ফলাফল → PDF
 
-## এডমিন প্যানেল (apps/admin)
+## এডমিন প্যানেল (admin)
 - লগইন, পাসওয়ার্ড পরিবর্তন
 - ড্যাশবোর্ড
 - শিক্ষক / কোর্স: যোগ, এডিট, ডিলিট (শিক্ষকের ছবিসহ)
@@ -45,4 +45,4 @@
 ## API এক নজরে (/api/v1)
 - সবার জন্য: `GET /public/home|settings|courses|teachers|reviews|quizzes`, `POST /public/admissions|reviews`, `POST /public/quizzes/:id/start|submit`
 - এডমিন লগইন: `POST /auth/login`, `GET /auth/me`, `PUT /auth/password`
-- এডমিন (Bearer টোকেন লাগে): `/admin/dashboard|teachers|courses|admissions|reviews|quizzes|questions|settings` — সব `server/src/routes/admin.routes.js` এ দেখুন
+- এডমিন (Bearer টোকেন লাগে): `/admin/dashboard|teachers|courses|admissions|reviews|quizzes|questions|settings` — সব `backend/src/routes/admin.routes.js` এ দেখুন

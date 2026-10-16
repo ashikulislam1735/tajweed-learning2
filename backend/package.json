@@ -1,5 +1,5 @@
 {
-  "name": "tajweed-server",
+  "name": "tajweed-backend",
   "version": "1.0.0",
   "description": "Tajweed Learning Centre - ব্যাকএন্ড API (Express + MongoDB)",
   "type": "module",

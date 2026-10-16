@@ -5,13 +5,23 @@
 
 ```
 tajweed-platform/
-├── apps/
-│   ├── web/      → পাবলিক ওয়েবসাইট (React + Vite)      → Vercel
-│   └── admin/    → এডমিন প্যানেল (React + Vite)          → Vercel (আলাদা প্রজেক্ট)
-├── server/       → API (Express + Mongoose)              → Render
-├── database/legacy/ → পুরনো MySQL ফাইল (শুধু রেফারেন্স)
-├── docs/FEATURES.md → ফিচার তালিকা, API, MySQL→MongoDB ম্যাপ
-└── render.yaml   → Render এর ঐচ্ছিক কনফিগ
+├── frontend/          → পাবলিক ওয়েবসাইট (React + Vite)        → Vercel
+│   └── src/
+│       ├── pages/         → পেজ (হোম, কোর্স, কুইজ, ভর্তি...)
+│       ├── components/    → ছোট ছোট অংশ (হেডার, কার্ড...)
+│       ├── services/      → ব্যাকএন্ডের সাথে কথা বলার কোড
+│       └── design/        → রং, ফন্ট, স্টাইল (শুধু ডিজাইন)
+├── admin/             → এডমিন প্যানেল (একই কাঠামো)               → Vercel (আলাদা প্রজেক্ট)
+├── backend/           → API (Express + Mongoose)                → Render
+│   └── src/
+│       ├── models/        → MongoDB এর ডাটা কাঠামো
+│       ├── routes/        → URL এর তালিকা
+│       ├── controllers/   → প্রতিটা কাজের লজিক
+│       ├── middleware/    → লগইন চেক, ছবি আপলোড, এরর
+│       └── config/        → ডাটাবেজ, Cloudinary, .env
+├── database/legacy/   → পুরনো MySQL ফাইল (শুধু রেফারেন্স)
+├── docs/FEATURES.md   → ফিচার তালিকা, API, MySQL→MongoDB ম্যাপ
+└── render.yaml        → Render এর ঐচ্ছিক কনফিগ
 ```
 
 > **গুরুত্বপূর্ণ:** কোড লেখার এনভায়রনমেন্টে ইন্টারনেট না থাকায় আমি `npm install` ও রান করে পরীক্ষা করতে পারিনি।
@@ -24,7 +34,7 @@ tajweed-platform/
 
 ## ধাপ ২: ব্যাকএন্ড চালু
 ```bash
-cd server
+cd backend
 npm install
 cp .env.example .env      # Windows এ: copy .env.example .env
 ```
@@ -37,8 +47,8 @@ npm run dev     # সার্ভার চালু: http://localhost:5000
 
 ## ধাপ ৩: ওয়েবসাইট ও এডমিন চালু (দুটো আলাদা টার্মিনালে)
 ```bash
-cd apps/web && npm install && cp .env.example .env && npm run dev      # http://localhost:5173
-cd apps/admin && npm install && cp .env.example .env && npm run dev    # http://localhost:5174
+cd frontend && npm install && cp .env.example .env && npm run dev      # http://localhost:5173
+cd admin && npm install && cp .env.example .env && npm run dev    # http://localhost:5174
 ```
 এডমিনে `ADMIN_USERNAME` / `ADMIN_PASSWORD` দিয়ে লগইন করুন।
 
@@ -55,15 +65,15 @@ git push -u origin main
 
 ## ধাপ ৫: ডিপ্লয়
 **১) Render (ব্যাকএন্ড):** New → Web Service → GitHub রিপো বেছে নিন
-- Root Directory: `server`, Build Command: `npm install`, Start Command: `npm start`
+- Root Directory: `backend`, Build Command: `npm install`, Start Command: `npm start`
 - Environment এ বসান: `MONGODB_URI`, `JWT_SECRET`, `CLOUDINARY_*`, `NODE_ENV=production`
 - `CLIENT_ORIGINS` এখন ফাঁকা রাখুন (ধাপ ৪ এ বসাবেন)
-- ডিপ্লয় শেষে URL পাবেন, যেমন `https://tajweed-server.onrender.com`
+- ডিপ্লয় শেষে URL পাবেন, যেমন `https://tajweed-backend.onrender.com`
 - প্রথম এডমিন বানাতে Render এর Shell থেকে একবার `npm run seed` চালান (ADMIN_USERNAME ও ADMIN_PASSWORD Environment এ দিয়ে)
 
-**২) Vercel (ওয়েবসাইট):** Add New → Project → একই রিপো → Root Directory: `apps/web` → Environment: `VITE_API_URL=https://<render-url>/api/v1`
+**২) Vercel (ওয়েবসাইট):** Add New → Project → একই রিপো → Root Directory: `frontend` → Environment: `VITE_API_URL=https://<render-url>/api/v1`
 
-**৩) Vercel (এডমিন):** আবার Add New → Project → একই রিপো → Root Directory: `apps/admin` → একই `VITE_API_URL`
+**৩) Vercel (এডমিন):** আবার Add New → Project → একই রিপো → Root Directory: `admin` → একই `VITE_API_URL`
 
 **৪) CORS ঠিক করা:** Render এ `CLIENT_ORIGINS` এ Vercel এর দুই URL কমা দিয়ে বসান (শেষে `/` ছাড়া):
 `https://tajweed-web.vercel.app,https://tajweed-admin.vercel.app` — তারপর Render রিডিপ্লয় করুন।
@@ -76,5 +86,5 @@ git push -u origin main
 - এডমিন টোকেন ব্রাউজারের localStorage এ থাকে (সহজ রাখতে)। পরে httpOnly কুকিতে নেওয়া যায়।
 
 ## ডিজাইন বদলাতে চাইলে
-- ওয়েবসাইট: `apps/web/src/styles/tokens.css` (রং, ফন্ট) → বাকি ফাইলগুলো ওই রং ব্যবহার করে
-- এডমিন: `apps/admin/src/styles/tokens.css`
+- ওয়েবসাইট: `frontend/src/design/tokens.css` (রং, ফন্ট) → বাকি ফাইলগুলো ওই রং ব্যবহার করে
+- এডমিন: `admin/src/design/tokens.css`

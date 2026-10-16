@@ -2,9 +2,9 @@
 # সাধারণভাবে Render ড্যাশবোর্ডে হাতে সেটআপ করাই শেখার জন্য ভালো, README দেখুন।
 services:
   - type: web
-    name: tajweed-server
+    name: tajweed-backend
     runtime: node
-    rootDir: server
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /api/health
